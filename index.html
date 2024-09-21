@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Stock Market Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        #stocks {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .stock {
+            background-color: #f4f4f4;
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 200px;
+        }
+        .stock .symbol {
+            font-weight: bold;
+        }
+        .stock .price {
+            color: green;
+        }
+        .stock .change {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Live Stock Market Data</h1>
+    <div id="stocks"></div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+
+        // Listen for stock data from the server
+        socket.on('stockData', (data) => {
+            const stocksDiv = document.getElementById('stocks');
+            stocksDiv.innerHTML = ''; // Clear previous data
+
+            data.forEach((stock) => {
+                const stockInfo = `
+                    <div class="stock">
+                        <div class="symbol">${stock.symbol}</div>
+                        <div class="price">Price: $${stock.price}</div>
+                        <div class="change">Change: ${stock.change}</div>
+                        <div class="timestamp">Time: ${stock.timestamp}</div>
+                    </div>
+                `;
+                stocksDiv.innerHTML += stockInfo;
+            });
+        });
+    </script>
+</body>
+</html>
