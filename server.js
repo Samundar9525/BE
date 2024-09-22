@@ -17,15 +17,6 @@ app.use(cors({
   origin: '*'
 }));
 
-<<<<<<< HEAD
-=======
-// Serve the Socket.IO client library from the CDN
-app.get('/socket.io/socket.io.js', (req, res) => {
-  res.redirect('https://cdn.socket.io/4.0.0/socket.io.min.js');
-});
-
-// Serve your HTML file
->>>>>>> b9e7e93f6c3bd35b193cf7b34a5eec8879497cd6
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
