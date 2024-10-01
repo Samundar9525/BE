@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
 });
 
 const generateRandomStockData = () => {
-  const stocks = ['SUZLON', 'AMAZON', 'GNRL', 'BSE', 'RattanPower', 'Airtel', 'Bajaj Housing', 'NPCC', 'Cochin Shipyard'];
+  const stocks = ['SUZLON', 'AMAZON', 'GNRL', 'BSE', 'RattanPower', 'Airtel', 'Bajaj Housing', 'NPCC'];
   return stocks.map((stock) => {
     return {
       symbol: stock,
